@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const authRoute = require('./routes/authRoute');
@@ -25,5 +26,7 @@ app.use('/todos' ,authenticateMiddleware, todoRoute);
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
 
-
-app.listen(8007 , ()=> {console.log('Server runing on port 8007')});
+// process.env = { PORT : 8007 , TEST : 'abcd'}
+const port = process.env.port || 8007;
+// console.log(process.env.jwt_secret_key)
+app.listen(port , ()=> {console.log('Server runing on port:'+ port)});

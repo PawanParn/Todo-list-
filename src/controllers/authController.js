@@ -43,7 +43,8 @@ exports.login = async(req , res , next) => {
                 email : user.email
         };
 
-        const token = jwt.sign(payload, 'bossanova', {
+        const token = jwt.sign(payload, 
+            process.env.JWT_SECRET_KEY || 'bossanova' , {
             algorithm : 'HS384',
             expiresIn : 600 
         })

@@ -1,3 +1,4 @@
+// require()
 const jwt = require('jsonwebtoken');
 
 const { User } = require('../models');
@@ -24,7 +25,7 @@ module.exports = async (req , res , next) => {
     
         const payload = jwt.verify(
             token,
-            'bossanova'
+            (process.env.JWT_SECRET_KEY || 'bossanova')
           );
       
 
